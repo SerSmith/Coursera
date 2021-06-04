@@ -1,15 +1,15 @@
 # Coursera
 
 ## Функция
-'''
-def factorize(x):
-    """ 
-    Factorize positive integer and return its factors.
-    :type x: int,>=0
-    :rtype: tuple[N],N>0
-    """
-    pass
-'''
+
+    def factorize(x):
+        """ 
+        Factorize positive integer and return its factors.
+        :type x: int,>=0
+        :rtype: tuple[N],N>0
+        """
+        pass
+
 ## Текст
 
 Необходимо написать комплект тестов используя модуль unittest стандартной библиотеки Python. Имя тестового класса - TestFactorize.  
