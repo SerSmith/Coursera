@@ -6,7 +6,7 @@ import Logic
 import Service
 
 
-SCREEN_DIM = (1680, 1050)
+SCREEN_DIM = (800, 600)
 
 pygame.init()
 gameDisplay = pygame.display.set_mode(SCREEN_DIM)

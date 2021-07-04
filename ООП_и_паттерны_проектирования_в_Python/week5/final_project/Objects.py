@@ -35,6 +35,11 @@ class Ally(AbstractObject, Interactive):
         self.position = position
 
     def interact(self, engine, hero):
+        HELP_PRICE = 6
+        if hero.gold >= HELP_PRICE:
+            hero.hp += 3
+            hero.gold -= HELP_PRICE
+
         self.action(engine, hero)
 
 
@@ -62,7 +67,7 @@ class Hero(Creature):
 
     def level_up(self):
         while self.exp >= 100 * (2 ** (self.level - 1)):
-            yield "level up!"
+            # yield "level up!"
             self.level += 1
             self.stats["strength"] += 2
             self.stats["endurance"] += 2
@@ -70,14 +75,20 @@ class Hero(Creature):
             self.hp = self.max_hp
 
 
-class Enemy(Creature):
+class Enemy(Creature, Interactive):
     
+
     def __init__(self, icon, stats, xp, position):
         self.xp = xp
         super().__init__(icon, stats, position)
 
-    def enteract(self, engine, hero):
-        pass
+    def interact(self, engine, hero):
+
+        hero.hp -= int(max(hero.stats["strength"], hero.stats["endurance"]) / 5)
+        hero.exp += self.xp
+        hero.gold += int(self.xp / 2)
+
+        hero.level_up()
 
 
 class Effect(Hero):
@@ -152,10 +163,19 @@ class Berserk(Effect):
 
 class Blessing(Effect):
     def apply_effect(self):
-        self.stats["inteligence"] += 4
+        self.stats["intelligence"] += 4
 
 
 class Weakness(Effect):
     def apply_effect(self):
         self.stats["strength"] -= 3
         self.stats["endurance"] -= 3
+
+
+class Randomizer(Effect):
+    def apply_effect(self):
+        self.stats["strength"] -= random.randrange(10) -5
+        self.stats["endurance"] -= random.randrange(10) -5
+        self.stats["intelligence"] -= random.randrange(10) -5
+        self.stats["hp"] -= random.randrange(10) -5
+        self.stats["exp"] -= random.randrange(10) -5

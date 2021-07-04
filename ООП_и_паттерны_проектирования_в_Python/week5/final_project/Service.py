@@ -41,12 +41,16 @@ def apply_blessing(engine, hero):
         engine.score += 0.2
         hero.gold -= int(20 * 1.5**engine.level) - \
             2 * hero.stats["intelligence"]
-        if random.randint(0, 1) == 0:
+        effect_type = random.randint(0, 3)
+        if effect_type == 0:
             engine.hero = Objects.Blessing(hero)
             engine.notify("Blessing applied")
-        else:
+        elif effect_type == 1:
             engine.hero = Objects.Berserk(hero)
             engine.notify("Berserk applied")
+        elif effect_type == 2:
+            engine.hero = Objects.Randomizer(hero)
+            engine.notify("Randomizer applied")
     else:
         engine.score -= 0.1
 
@@ -213,12 +217,6 @@ class EmptyMap(MapFactory):
 
         def __init__(self):
             self.Map = ['00000000000',
-                        '0         0',
-                        '0         0',
-                        '0         0',
-                        '0         0',
-                        '0         0',
-                        '0         0',
                         '0         0',
                         '0         0',
                         '0         0',
