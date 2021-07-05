@@ -216,11 +216,18 @@ class EmptyMap(MapFactory):
     class Map:
 
         def __init__(self):
-            self.Map = ['00000000000',
-                        '0         0',
-                        '0         0',
-                        '0         0',
-                        '00000000000'
+            self.Map = ['0000000000000',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0           0',
+                        '0000000000000'
                         ]
             self.Map = list(map(list, self.Map))
             for i in self.Map:
@@ -237,7 +244,7 @@ class EmptyMap(MapFactory):
 
         def get_objects(self, _map):
             prop = object_list_prob['objects']['stairs']
-            coord = (random.randint(1, 10), random.randint(1, 10))
+            coord = (random.randint(1, 3), random.randint(1, 3))
             intersect = True
             while intersect:
                 intersect = False
@@ -292,7 +299,7 @@ class SpecialMap(MapFactory):
             for obj_name in object_list_prob['objects']:
                 prop = object_list_prob['objects'][obj_name]
                 for i in range(random.randint(prop['min-count'], prop['max-count'])):
-                    coord = (random.randint(1, 38), random.randint(1, 10))
+                    coord = (random.randint(1, 20), random.randint(1, 7))
                     intersect = True
                     while intersect:
                         intersect = False

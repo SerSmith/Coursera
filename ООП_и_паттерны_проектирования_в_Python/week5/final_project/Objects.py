@@ -177,5 +177,4 @@ class Randomizer(Effect):
         self.stats["strength"] -= random.randrange(10) -5
         self.stats["endurance"] -= random.randrange(10) -5
         self.stats["intelligence"] -= random.randrange(10) -5
-        self.stats["hp"] -= random.randrange(10) -5
-        self.stats["exp"] -= random.randrange(10) -5
+
